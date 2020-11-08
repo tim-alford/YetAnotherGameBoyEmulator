@@ -1,4 +1,5 @@
-package com.ocka.emulator.model;
+package com.ocka.emulator.model.operations;
+import com.ocka.emulator.model.*;
 public class LoadByte implements Operation {
 	@Override
 	public void execute(Cpu c, Memory m) throws Exception {
