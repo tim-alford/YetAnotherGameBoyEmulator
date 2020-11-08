@@ -132,4 +132,47 @@ public class TestRegisters {
 		assertThat(r.getH(), is(equalTo((byte)0x88)));
 		assertThat(r.getL(), is(equalTo((byte)0x22)));
 	}
+	@Test
+	public void testZeroBit(){
+		Registers r = new Registers();
+		r.setZeroBit();
+		assertThat(r.isZeroBitSet(), is(true));
+		r.clearZeroBit();
+		assertThat(r.isZeroBitSet(), is(false));
+	}
+	@Test
+	public void testSubtractBit(){
+		Registers r = new Registers();
+		r.setSubtractBit();
+		assertThat(r.isSubtractBitSet(), is(true));
+		r.clearSubtractBit();
+		assertThat(r.isSubtractBitSet(), is(false));
+	}
+	@Test
+	public void testCarryBit(){
+		Registers r = new Registers();
+		r.setCarryBit();
+		assertThat(r.isCarryBitSet(), is(true));
+		r.clearCarryBit();
+		assertThat(r.isCarryBitSet(), is(false));
+	}
+	@Test
+	public void testHalfCarryBit(){
+		Registers r = new Registers();
+		r.setHalfCarryBit();
+		assertThat(r.isHalfCarryBitSet(), is(true));
+		r.clearHalfCarryBit();
+		assertThat(r.isHalfCarryBitSet(), is(false));
+	}
+	@Test
+	public void testSetFlagBits(){
+		Registers r = new Registers();
+		r.setZeroBit();
+		r.setHalfCarryBit();
+		r.setCarryBit();
+		r.setSubtractBit();
+		assertThat(r.getF(), is(equalTo((byte)0xF0)));
+		r.clearFlagBits();
+		assertThat(r.getF(), is(equalTo((byte)0x00)));
+	}
 }

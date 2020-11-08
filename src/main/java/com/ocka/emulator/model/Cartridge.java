@@ -103,6 +103,9 @@ public class Cartridge {
 		sum += nonce;
 		return ( sum & 0xFF ) == 0;
 	}
+	public byte[] getData(){
+		return data;
+	}
 	public static Cartridge open(File f) throws Exception {
 		if(!f.exists()){
 			String msg = new StringBuilder().

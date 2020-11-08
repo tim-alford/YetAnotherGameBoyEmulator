@@ -10,6 +10,10 @@ public class Registers {
 	private byte l;
 	private int sp; // first two bytes (LSB)
 	private int pc; // first two bytes (LSB)
+	private static final int ZERO_FLAG = 0x80;
+	private static final int SUBTRACT_FLAG = 0x40;
+	private static final int HALF_CARRY_FLAG = 0x20;
+	private static final int CARRY_FLAG = 0x10;
 	public int getSp(){ 
 		return sp & 0xFFFF; 
 	}
@@ -50,6 +54,46 @@ public class Registers {
 		this.a = bytes[0];
 		this.f = bytes[1];	
 	}	
+	/* methods for checking flag register */
+	public boolean isZeroBitSet(){
+		return (f & ZERO_FLAG) == ZERO_FLAG;
+	}
+	public boolean isSubtractBitSet(){
+		return (f & SUBTRACT_FLAG) == SUBTRACT_FLAG; 
+	}
+	public boolean isHalfCarryBitSet(){
+		return (f & HALF_CARRY_FLAG) == HALF_CARRY_FLAG;
+	}
+	public boolean isCarryBitSet(){
+		return (f & CARRY_FLAG) == CARRY_FLAG;
+	}
+	public void setZeroBit(){
+		f |= ZERO_FLAG;	
+	}
+	public void setSubtractBit(){
+		f |= SUBTRACT_FLAG;
+	}
+	public void setHalfCarryBit(){
+		f |= HALF_CARRY_FLAG;
+	}
+	public void setCarryBit(){
+		f |= CARRY_FLAG;		
+	}
+	public void clearFlagBits(){
+		f &= 0x00;
+	}
+	public void clearZeroBit(){
+		f &= (ZERO_FLAG ^ 0xFF);	
+	}
+	public void clearSubtractBit(){
+		f &= (SUBTRACT_FLAG ^ 0xFF);	
+	}
+	public void clearCarryBit(){
+		f &= (CARRY_FLAG ^ 0xFF);	
+	}
+	public void clearHalfCarryBit(){
+		f &= (HALF_CARRY_FLAG ^ 0xFF);	
+	}
 	/* simple register setters and getters */
 	public byte getA(){ return a; }
 	public byte getB(){ return b; }
