@@ -1,3 +1,4 @@
+00	com.ocka.emulator.model.operations.NoOp
 06	com.ocka.emulator.model.operations.LoadByte
 0E	com.ocka.emulator.model.operations.LoadByte
 16	com.ocka.emulator.model.operations.LoadByte

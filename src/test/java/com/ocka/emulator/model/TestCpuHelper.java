@@ -19,6 +19,7 @@ public class TestCpuHelper {
 		assertThat(lines.isEmpty(), is(false));
 		assertThat(lines.contains("06\tcom.ocka.emulator.model.operations.LoadByte"), is(true));
 		assertThat(lines.contains("2E\tcom.ocka.emulator.model.operations.LoadByte"), is(true));
+		assertThat(lines.contains("00\tcom.ocka.emulator.model.operations.NoOp"), is(true));
 	}
 	@Test
 	public void testReadOpTableConfig() throws Exception {
@@ -31,6 +32,7 @@ public class TestCpuHelper {
 		assertThat(mappings.keySet().contains(0x26), is(true));
 		assertThat(mappings.keySet().contains(0x2E), is(true));
 		assertThat(mappings.get(0x06), is(equalTo(LoadByte.class)));
+		assertThat(mappings.get(0x00), is(equalTo(NoOp.class)));
 	}
 	@Test
 	public void testLoadOpTable() throws Exception {

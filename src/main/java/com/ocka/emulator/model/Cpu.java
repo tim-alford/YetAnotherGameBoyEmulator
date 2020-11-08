@@ -5,6 +5,9 @@ public class Cpu {
 	private Memory m = null;
 	private boolean executing = false;
 	private final Class<?> opTable[] = new Class[0xFFFF];
+	private final double frequency = 4.194304 * 1000000; // Hz *clock* cycles
+	private final double period = 1/frequency; // length of one cycle (seconds)
+	private long clock = 0;  // current clock value
 	public Cpu(Memory m) throws Exception {
 		this.m = m;
 		CpuHelper.loadOpTable(opTable);
@@ -27,8 +30,26 @@ public class Cpu {
 		r.setPc(r.getPc()+1);
 		return current();
 	}
+	public double getPeriod(){
+		return period;
+	}
+	public long getClock(){
+		return clock;
+	}
+	/**
+	* Execute the specified op code.
+	* @param opCode The code of the operation to be performed.
+	*/
 	public void execute(byte opCode) throws Exception {
-		Class<?> opClass = opTable[opCode];
+		Class<?> opClass = null;
+		if(opCode > opTable.length){
+			String msg = new StringBuilder().
+				append(String.format("Error, op code %x is out of bounds. ", opCode)).
+				append("Maximum value can be 0xFFFE").
+				toString();
+			throw new Exception(msg);
+		}
+		opClass = opTable[opCode];
 		if(opClass == null){
 			String msg = new StringBuilder().
 				append(String.format("Error, op code %x is not mapped. ", opCode)).
@@ -41,7 +62,7 @@ public class Cpu {
 	}
 	public void start() throws Exception {
 		executing = true;
-		while(true){
+		while(r.getPc() != m.getEnd()){
 			byte opCode = current();
 			execute(opCode);
 			next();
