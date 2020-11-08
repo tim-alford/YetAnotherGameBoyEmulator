@@ -59,7 +59,7 @@ public class CpuHelper {
 		}
 		return results;
 	}	
-	public static void loadOpTable(List<Class<? extends Operation>> opTable) throws Exception {
+	public static void loadOpTable(Class<?> opTable[]) throws Exception {
 		String path = System.getenv("OP_TABLE_CONFIG");
 		if(path == null){
 			String msg = new StringBuilder().
@@ -70,7 +70,7 @@ public class CpuHelper {
 		}	
 		Map<Integer, Class<? extends Operation>> config = readOpTableConfig(path);
 		for(Integer opCode : config.keySet()){
-			opTable.set(opCode.intValue(), config.get(opCode));
+			opTable[opCode.intValue()] = config.get(opCode); 
 		}
 	}
 }

@@ -4,12 +4,12 @@ public class Cpu {
 	private final Registers r = new Registers();
 	private Memory m = null;
 	private boolean executing = false;
-	private final List<Class<? extends Operation>> opTable = new ArrayList<>(0xFFFF);
+	private final Class<?> opTable[] = new Class[0xFFFF];
 	public Cpu(Memory m) throws Exception {
 		this.m = m;
 		CpuHelper.loadOpTable(opTable);
 	}
-	public List<Class<? extends Operation>> getOpTable(){
+	public Class<?>[] getOpTable(){
 		return opTable;
 	}
 	/**
@@ -28,7 +28,7 @@ public class Cpu {
 		return current();
 	}
 	public void execute(byte opCode) throws Exception {
-		Class<? extends Operation> opClass = opTable.get(opCode);
+		Class<?> opClass = opTable[opCode];
 		if(opClass == null){
 			String msg = new StringBuilder().
 				append(String.format("Error, op code %x is not mapped. ", opCode)).
@@ -36,7 +36,7 @@ public class Cpu {
 				toString();
 			throw new Exception(msg);
 		}
-		Operation op = opClass.newInstance();
+		Operation op = (Operation) opClass.newInstance();
 		op.execute(this, m);	
 	}
 	public void start() throws Exception {

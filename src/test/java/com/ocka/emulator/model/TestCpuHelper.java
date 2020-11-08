@@ -32,4 +32,10 @@ public class TestCpuHelper {
 		assertThat(mappings.keySet().contains(0x2E), is(true));
 		assertThat(mappings.get(0x06), is(equalTo(LoadByte.class)));
 	}
+	@Test
+	public void testLoadOpTable() throws Exception {
+		Class<?> opClasses[] = new Class[0xFFFF];
+		CpuHelper.loadOpTable(opClasses);
+		assertThat(opClasses[0x06], is(equalTo(LoadByte.class)));
+	}
 }
