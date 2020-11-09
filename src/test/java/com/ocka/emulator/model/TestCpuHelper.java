@@ -17,13 +17,13 @@ public class TestCpuHelper {
 	public void testReadLines() throws Exception {
 		List<String> lines = CpuHelper.readLines(new File(CONFIG_PATH));
 		assertThat(lines.isEmpty(), is(false));
-		assertThat(lines.contains("06\tcom.ocka.emulator.model.operations.LoadByte"), is(true));
-		assertThat(lines.contains("2E\tcom.ocka.emulator.model.operations.LoadByte"), is(true));
-		assertThat(lines.contains("00\tcom.ocka.emulator.model.operations.NoOp"), is(true));
+		assertThat(lines.contains("06\tcom.ocka.emulator.model.operations.LoadByte\t8"), is(true));
+		assertThat(lines.contains("2E\tcom.ocka.emulator.model.operations.LoadByte\t8"), is(true));
+		assertThat(lines.contains("00\tcom.ocka.emulator.model.operations.NoOp\t4"), is(true));
 	}
 	@Test
 	public void testReadOpTableConfig() throws Exception {
-		Map<Integer, Class<? extends Operation>> mappings = CpuHelper.readOpTableConfig(CONFIG_PATH);
+		Map<Integer, OperationData> mappings = CpuHelper.readOpTableConfig(CONFIG_PATH);
 		assertThat(mappings.size(), is(greaterThan(0)));
 		assertThat(mappings.keySet().contains(0x06), is(true));
 		assertThat(mappings.keySet().contains(0x0E), is(true));
@@ -31,13 +31,13 @@ public class TestCpuHelper {
 		assertThat(mappings.keySet().contains(0x1E), is(true));
 		assertThat(mappings.keySet().contains(0x26), is(true));
 		assertThat(mappings.keySet().contains(0x2E), is(true));
-		assertThat(mappings.get(0x06), is(equalTo(LoadByte.class)));
-		assertThat(mappings.get(0x00), is(equalTo(NoOp.class)));
+		assertThat(mappings.get(0x06).getImplementation(), is(equalTo(LoadByte.class)));
+		assertThat(mappings.get(0x00).getImplementation(), is(equalTo(NoOp.class)));
 	}
 	@Test
 	public void testLoadOpTable() throws Exception {
-		Class<?> opClasses[] = new Class[0xFFFF];
+		OperationData opClasses[] = new OperationData[0xFFFF];
 		CpuHelper.loadOpTable(opClasses);
-		assertThat(opClasses[0x06], is(equalTo(LoadByte.class)));
+		assertThat(opClasses[0x06].getImplementation(), is(equalTo(LoadByte.class)));
 	}
 }

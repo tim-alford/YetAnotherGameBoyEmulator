@@ -4,15 +4,15 @@ public class Cpu {
 	private final Registers r = new Registers();
 	private Memory m = null;
 	private boolean executing = false;
-	private final Class<?> opTable[] = new Class[0xFFFF];
-	private final double frequency = 4.194304 * 1000000; // Hz *clock* cycles
-	private final double period = 1/frequency; // length of one cycle (seconds)
+	private final OperationData opTable[] = new OperationData[0xFFFF];
+	private final double frequency = 4.194304 * 1000000; // Hz *clock* cycles, approx 4x machine frequency. 4 clock cycles = 1 machine cycle.
+	private final double period = 1 / frequency; // length of one cycle (seconds)
 	private long clock = 0;  // current clock value
 	public Cpu(Memory m) throws Exception {
 		this.m = m;
 		CpuHelper.loadOpTable(opTable);
 	}
-	public Class<?>[] getOpTable(){
+	public OperationData[] getOpTable(){
 		return opTable;
 	}
 	/**
@@ -39,9 +39,10 @@ public class Cpu {
 	/**
 	* Execute the specified op code.
 	* @param opCode The code of the operation to be performed.
+	* @return The number of cycles elapsed during execution.
 	*/
-	public void execute(byte opCode) throws Exception {
-		Class<?> opClass = null;
+	public int execute(byte opCode) throws Exception {
+		OperationData data = null;
 		if(opCode > opTable.length){
 			String msg = new StringBuilder().
 				append(String.format("Error, op code %x is out of bounds. ", opCode)).
@@ -49,7 +50,9 @@ public class Cpu {
 				toString();
 			throw new Exception(msg);
 		}
-		opClass = opTable[opCode];
+		data = opTable[opCode];
+		Class<?> opClass = data.getImplementation();
+		int cycles = data.getCycles(); // *clock* cycles
 		if(opClass == null){
 			String msg = new StringBuilder().
 				append(String.format("Error, op code %x is not mapped. ", opCode)).
@@ -57,14 +60,17 @@ public class Cpu {
 				toString();
 			throw new Exception(msg);
 		}
+		// run op
+		// return time to execute
 		Operation op = (Operation) opClass.newInstance();
 		op.execute(this, m);	
+		return cycles;
 	}
 	public void start() throws Exception {
 		executing = true;
 		while(r.getPc() != m.getEnd()){
 			byte opCode = current();
-			execute(opCode);
+			int cycles = execute(opCode);
 			next();
 		}
 	}

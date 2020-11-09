@@ -1,7 +1,64 @@
-00	com.ocka.emulator.model.operations.NoOp
-06	com.ocka.emulator.model.operations.LoadByte
-0E	com.ocka.emulator.model.operations.LoadByte
-16	com.ocka.emulator.model.operations.LoadByte
-1E	com.ocka.emulator.model.operations.LoadByte
-26	com.ocka.emulator.model.operations.LoadByte
-2E	com.ocka.emulator.model.operations.LoadByte
+00	com.ocka.emulator.model.operations.NoOp	4
+06	com.ocka.emulator.model.operations.LoadByte	8
+0E	com.ocka.emulator.model.operations.LoadByte	8
+16	com.ocka.emulator.model.operations.LoadByte	8
+1E	com.ocka.emulator.model.operations.LoadByte	8
+26	com.ocka.emulator.model.operations.LoadByte	8
+2E	com.ocka.emulator.model.operations.LoadByte	8
+7F	com.ocka.emulator.model.operations.LoadRegister	4
+78	com.ocka.emulator.model.operations.LoadRegister	4
+79	com.ocka.emulator.model.operations.LoadRegister	4
+7A	com.ocka.emulator.model.operations.LoadRegister	4
+7B	com.ocka.emulator.model.operations.LoadRegister	4
+7C	com.ocka.emulator.model.operations.LoadRegister	4
+7D	com.ocka.emulator.model.operations.LoadRegister	4
+7E	com.ocka.emulator.model.operations.LoadRegister	8
+40	com.ocka.emulator.model.operations.LoadRegister	4
+41	com.ocka.emulator.model.operations.LoadRegister	4
+42	com.ocka.emulator.model.operations.LoadRegister	4
+43	com.ocka.emulator.model.operations.LoadRegister	4
+44	com.ocka.emulator.model.operations.LoadRegister	4
+45	com.ocka.emulator.model.operations.LoadRegister	4
+46	com.ocka.emulator.model.operations.LoadRegister	8
+48	com.ocka.emulator.model.operations.LoadRegister	4
+49	com.ocka.emulator.model.operations.LoadRegister	4
+4A	com.ocka.emulator.model.operations.LoadRegister	4
+4B	com.ocka.emulator.model.operations.LoadRegister	4
+4C	com.ocka.emulator.model.operations.LoadRegister	4
+4D	com.ocka.emulator.model.operations.LoadRegister	4
+4E	com.ocka.emulator.model.operations.LoadRegister	8
+50	com.ocka.emulator.model.operations.LoadRegister	4
+51	com.ocka.emulator.model.operations.LoadRegister	4
+52	com.ocka.emulator.model.operations.LoadRegister	4
+53	com.ocka.emulator.model.operations.LoadRegister	4
+54	com.ocka.emulator.model.operations.LoadRegister	4
+55	com.ocka.emulator.model.operations.LoadRegister	4
+56	com.ocka.emulator.model.operations.LoadRegister	8
+58	com.ocka.emulator.model.operations.LoadRegister	4
+59	com.ocka.emulator.model.operations.LoadRegister	4
+5A	com.ocka.emulator.model.operations.LoadRegister	4
+5B	com.ocka.emulator.model.operations.LoadRegister	4
+5C	com.ocka.emulator.model.operations.LoadRegister	4
+5D	com.ocka.emulator.model.operations.LoadRegister	4
+5E	com.ocka.emulator.model.operations.LoadRegister	8
+60	com.ocka.emulator.model.operations.LoadRegister	4
+61	com.ocka.emulator.model.operations.LoadRegister	4
+62	com.ocka.emulator.model.operations.LoadRegister	4
+63	com.ocka.emulator.model.operations.LoadRegister	4
+64	com.ocka.emulator.model.operations.LoadRegister	4
+65	com.ocka.emulator.model.operations.LoadRegister	4
+66	com.ocka.emulator.model.operations.LoadRegister	8
+68	com.ocka.emulator.model.operations.LoadRegister	4
+69	com.ocka.emulator.model.operations.LoadRegister	4
+6A	com.ocka.emulator.model.operations.LoadRegister	4
+6B	com.ocka.emulator.model.operations.LoadRegister	4
+6C	com.ocka.emulator.model.operations.LoadRegister	4
+6D	com.ocka.emulator.model.operations.LoadRegister	4
+6E	com.ocka.emulator.model.operations.LoadRegister	8
+70	com.ocka.emulator.model.operations.LoadRegister	8
+71	com.ocka.emulator.model.operations.LoadRegister	8
+72	com.ocka.emulator.model.operations.LoadRegister	8
+73	com.ocka.emulator.model.operations.LoadRegister	8
+74	com.ocka.emulator.model.operations.LoadRegister	8
+75	com.ocka.emulator.model.operations.LoadRegister	8
+36	com.ocka.emulator.model.operations.LoadRegister	12
