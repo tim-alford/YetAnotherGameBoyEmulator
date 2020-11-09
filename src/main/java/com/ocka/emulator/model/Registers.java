@@ -36,23 +36,23 @@ public class Registers {
 	}
 	public void setBc(int bc){ 
 		byte[] bytes = split(bc);
-		this.b = bytes[0];
-		this.c = bytes[1];	
+		this.c = bytes[0];
+		this.b = bytes[1];	
 	}
 	public void setDe(int de){ 
 		byte[] bytes = split(de);
-		this.d = bytes[0];
-		this.e = bytes[1];	
+		this.e = bytes[0];
+		this.d = bytes[1];	
 	}
 	public void setHl(int hl){ 	
 		byte[] bytes = split(hl);
-		this.h = bytes[0];
-		this.l = bytes[1];	
+		this.l = bytes[0];
+		this.h = bytes[1];	
 	}
 	public void setAf(int af){
 		byte[] bytes = split(af);
-		this.a = bytes[0];
-		this.f = bytes[1];	
+		this.f = bytes[0];
+		this.a = bytes[1];	
 	}	
 	/* methods for checking flag register */
 	public boolean isZeroBitSet(){

@@ -8,6 +8,9 @@ import static org.hamcrest.Matchers.*;
 import com.ocka.emulator.model.enumerations.*;
 import com.ocka.emulator.model.operations.*;
 public class TestCpu {
+	/**
+	* Load a single byte into a register.
+	*/
 	private void doLoadByte(Cpu c, Memory m, byte opCode, byte data) throws Exception {
 		m.clear();
 		m.setByte(0x100, (byte)opCode);
@@ -16,6 +19,7 @@ public class TestCpu {
 		c.getRegisters().setPc(0x100);
 		c.start();
 	}
+	/* LD A,n tests */
 	@Test
 	public void testLoadRegisterB() throws Exception {
 		Memory m = new Memory();
