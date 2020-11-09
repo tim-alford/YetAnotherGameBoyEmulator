@@ -34,16 +34,19 @@ public class Registers {
 		byte lsb = (byte) (bytes & 0xFF);
 		return new byte[]{ msb, lsb };
 	}
+	private int pack(byte msb, byte lsb){
+		int x = 0;
+		x |= (int)((msb&0xFF)<<8);
+		x |= (int)(lsb&0xFF);
+		return x & 0xFFFF;
+	}
 	public void setBc(int bc){ 
 		byte[] bytes = split(bc);
 		this.c = bytes[0];
 		this.b = bytes[1];	
 	}
 	public int getBc(){
-		int x = 0;
-		x |= (this.c << 8);
-		x |= this.b;
-		return x;	
+		return pack(c, b);
 	}
 	public void setDe(int de){ 
 		byte[] bytes = split(de);
@@ -51,10 +54,7 @@ public class Registers {
 		this.d = bytes[1];	
 	}
 	public int getDe(){
-		int x = 0;
-		x |= (this.e << 8);
-		x |= this.d;
-		return x;
+		return pack(e, d);
 	}
 	public void setHl(int hl){ 	
 		byte[] bytes = split(hl);
@@ -62,10 +62,7 @@ public class Registers {
 		this.h = bytes[1];	
 	}
 	public int getHl(){
-		int x = 0;
-		x |= (this.l << 8);
-		x |= this.h;
-		return x;
+		return pack(l, h);
 	}
 	public void setAf(int af){
 		byte[] bytes = split(af);
@@ -73,10 +70,7 @@ public class Registers {
 		this.a = bytes[1];	
 	}	
 	public int getAf(){
-		int x = 0;
-		x |= (this.f << 8);
-		x |= this.a;
-		return x;
+		return pack(f, a);
 	}
 	/* methods for checking flag register */
 	public boolean isZeroBitSet(){

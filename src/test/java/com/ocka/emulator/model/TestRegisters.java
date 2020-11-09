@@ -104,6 +104,7 @@ public class TestRegisters {
 		r.setBc(0xAABB);
 		assertThat(r.getB(), is(equalTo((byte)0xBB)));
 		assertThat(r.getC(), is(equalTo((byte)0xAA)));
+		assertThat(r.getBc(), is(equalTo(0xAABB)));
 	}
 	@Test
 	public void testSetAF(){
@@ -113,6 +114,7 @@ public class TestRegisters {
 		r.setAf(0xFFEE);
 		assertThat(r.getA(), is(equalTo((byte)0xEE)));
 		assertThat(r.getF(), is(equalTo((byte)0xFF)));
+		assertThat(r.getAf(), is(equalTo(0xFFEE)));
 	}
 	@Test
 	public void testSetDe(){
@@ -122,6 +124,7 @@ public class TestRegisters {
 		r.setDe(0xCC11);
 		assertThat(r.getD(), is(equalTo((byte)0x11)));
 		assertThat(r.getE(), is(equalTo((byte)0xCC)));
+		assertThat(r.getDe(), is(equalTo(0xCC11)));
 	}
 	@Test
 	public void testSetHl(){
@@ -131,6 +134,7 @@ public class TestRegisters {
 		r.setHl(0x8822);
 		assertThat(r.getH(), is(equalTo((byte)0x22)));
 		assertThat(r.getL(), is(equalTo((byte)0x88)));
+		assertThat(r.getHl(), is(equalTo(0x8822)));
 	}
 	@Test
 	public void testZeroBit(){
