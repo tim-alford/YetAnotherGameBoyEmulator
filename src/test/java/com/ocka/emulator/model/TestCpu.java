@@ -230,4 +230,6 @@ public class TestCpu {
 	/* 7, 8, 9. LDD A,(HL) */
 	/* 10, 11, 12. LDD (HL), A */
 	/* 13, 14, 15. LDI A, (HL) */
+	/* 16, 17, 18. LDI (HL), A  */
+	/* 19. LDH (n), A */
 }
